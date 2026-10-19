@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>elifonline</title>
+  <meta name="description" content="Elif — robotics and R&D engineer working on perception, SLAM-based 3D capture, sensor fusion and real-time systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000000;
+      --surface: #070d08;
+      --text: #e6f4e8;
+      --muted: #8aa58f;
+      --border: #16281a;
+      --accent: #39d353;
+      --accent-soft: #0b2312;
+      --tag-bg: #0c1a0f;
+    }
+    ::selection { background: var(--accent); color: #000; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+    /* nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .logo { font-family: "JetBrains Mono", monospace; font-weight: 500; color: var(--text); }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 20px; align-items: center; font-size: 14px; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* hero */
+    header { padding: 96px 0 64px; }
+    .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-size: clamp(34px, 5.5vw, 52px); line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; }
+    .lead { margin-top: 20px; font-size: 18px; color: var(--muted); max-width: 640px; }
+    .cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 10px 18px; border-radius: 8px; font-weight: 500; font-size: 15px;
+      border: 1px solid var(--border); color: var(--text); background: var(--surface);
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #000; }
+    .btn:hover { text-decoration: none; opacity: 0.9; }
+
+    /* sections */
+    section { padding: 56px 0; border-top: 1px solid var(--border); }
+    h2 { font-size: 14px; font-family: "JetBrains Mono", monospace; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 28px; }
+
+    /* projects */
+    .projects { display: grid; gap: 20px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; display: grid; grid-template-columns: 240px 1fr; gap: 24px;
+    }
+    .card.featured { grid-template-columns: 1fr; }
+    .card.featured .thumb { aspect-ratio: 16 / 7; }
+    .thumb {
+      aspect-ratio: 16 / 10; border-radius: 8px; background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 12px;
+      overflow: hidden;
+    }
+    .thumb img, .thumb video { width: 100%; height: 100%; object-fit: cover; }
+    .card .kicker { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+    .card h3 { font-size: 20px; margin-bottom: 6px; }
+    .card h3.with-logo { display: flex; align-items: center; gap: 12px; }
+    /* the logo PNG has lots of white padding, so crop it to the mark inside a chip */
+    .logo-chip { flex: none; width: 128px; height: 52px; overflow: hidden; background: #fff; border-radius: 8px; }
+    .logo-chip img { display: block; width: 150px; margin: -52px 0 0 -11px; }
+    .card p { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: "JetBrains Mono", monospace; font-size: 12px;
+      background: var(--tag-bg); color: var(--muted); padding: 3px 8px; border-radius: 4px;
+    }
+    .links { display: flex; gap: 16px; margin-top: 14px; font-size: 14px; font-weight: 500; }
+
+    /* math breakdown */
+    .math { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px; }
+    .math > summary {
+      cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 14px;
+      color: var(--accent); list-style: none;
+    }
+    .math > summary::-webkit-details-marker { display: none; }
+    .math > summary::before { content: "+ "; }
+    .math[open] > summary::before { content: "− "; }
+    .math ol { list-style: none; counter-reset: step; display: grid; gap: 22px; margin-top: 20px; }
+    .math li { counter-increment: step; }
+    .math h4 { font-size: 16px; margin-bottom: 6px; }
+    .math h4::before { content: counter(step, decimal-leading-zero) "  "; font-family: "JetBrains Mono", monospace; color: var(--accent); }
+    .math p { margin-bottom: 8px; }
+    .eq {
+      font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--text);
+      background: var(--tag-bg); border-left: 2px solid var(--accent);
+      padding: 10px 14px; border-radius: 4px; margin: 8px 0; overflow-x: auto; white-space: nowrap;
+    }
+    .eq + .eq { margin-top: -2px; }
+    .math .where { font-size: 14px; color: var(--muted); }
+
+    /* about */
+    .about p { color: var(--muted); max-width: 680px; margin-bottom: 14px; font-size: 16px; }
+    .about strong { color: var(--text); font-weight: 600; }
+
+    /* experience */
+    .timeline { display: grid; gap: 22px; }
+    .role { display: grid; grid-template-columns: 160px 1fr; gap: 16px; }
+    .role .when { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); padding-top: 2px; }
+    .role h3 { font-size: 17px; }
+    .role .org { color: var(--accent); font-weight: 500; font-size: 15px; }
+    .role p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+    /* skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .skills h3 { font-size: 16px; margin-bottom: 8px; }
+
+    .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact-note { color: var(--muted); margin-bottom: 20px; max-width: 620px; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 640px) {
+      header { padding: 64px 0 48px; }
+      .nav-links a:not(.keep) { display: none; }
+      .card { grid-template-columns: 1fr; }
+      .card.featured .thumb { aspect-ratio: 16 / 10; }
+      .role { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a class="logo" href="#">elif<span>online</span></a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a class="keep" href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">// Robotics · Perception · R&amp;D</p>
+      <h1>I build real-time systems that connect the physical world to 3D.</h1>
+      <p class="lead">
+        Robotics and R&amp;D engineer working on SLAM-based 3D capture, robot perception,
+        sensor fusion and assistive hardware, with an MSc in Robotics and Autonomous Systems
+        and years of shipping production C++ and Python.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn" href="cv.pdf">Download CV</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="projects">
+      <div class="wrap">
+        <h2>Robotics &amp; R&amp;D projects</h2>
+        <div class="projects">
+
+          <article class="card featured">
+            <div class="thumb"><img src="img/jumptrack-overlay.jpg" alt="JumpTRACK overlay: skater bounding box, pose skeleton and jump read-out on a broadcast figure skating frame"></div>
+            <div>
+              <p class="kicker">Computer vision · Pose estimation · Sports analytics</p>
+              <h3 class="with-logo"><span class="logo-chip"><img src="img/jumptrack-logo.png" alt="JumpTRACK logo"></span>JumpTRACK</h3>
+              <p>Automated analysis of figure skating jumps from broadcast video. YOLOv8 detection and pose estimation track the skater, an OpenCV ice-line estimator gives a ground reference, and an air signal fusing foot clearance with hip velocity is segmented with hysteresis to find takeoff and landing. Jump height comes from airtime, and every frame is rendered with the skeleton and a live jump read-out.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">YOLOv8 Pose</span><span class="tag">OpenCV</span><span class="tag">Signal processing</span><span class="tag">NumPy</span></div>
+
+              <details class="math">
+                <summary>The math behind it</summary>
+                <ol>
+                  <li>
+                    <h4>Picking the skater</h4>
+                    <p>Broadcast frames are full of people: judges, coaches, the crowd. Each detected person is scored on how central and how large their box is, and the lowest score wins.</p>
+                    <div class="eq">score = α · d / D + (1 − α) · (1 − A / A<sub>max</sub>),&nbsp;&nbsp; α = 0.7</div>
+                    <p class="where">d = distance from box centre to frame centre, D = frame diagonal, A = box area, A<sub>max</sub> = largest box in the frame.</p>
+                  </li>
+                  <li>
+                    <h4>Finding the ice</h4>
+                    <p>To know when the skater leaves the ground, the system needs to know where the ground is. It searches a narrow band around the skater's feet for the strongest horizontal edge, which is where the boots meet the ice.</p>
+                    <div class="eq">E(y) = mean<sub>x</sub> | ∂(G<sub>σ</sub> ∗ I) / ∂y |,&nbsp;&nbsp; y* = argmax<sub>y</sub> E(y)</div>
+                    <p class="where">I = greyscale image, G<sub>σ</sub> = 9×9 Gaussian blur, ∂/∂y = Scharr vertical gradient. Search band: 10% of box height above the box bottom to 20% below it.</p>
+                    <p>Camera pans make the raw estimate jumpy, so it is rate-limited and then smoothed with an exponential moving average:</p>
+                    <div class="eq">Δ = clamp(y* − ŷ<sub>t−1</sub>, −10px, +10px)</div>
+                    <div class="eq">ŷ<sub>t</sub> = (1 − β) · ŷ<sub>t−1</sub> + β · (ŷ<sub>t−1</sub> + Δ),&nbsp;&nbsp; β = 0.15</div>
+                  </li>
+                  <li>
+                    <h4>The air signal</h4>
+                    <p>Each frame gets one number saying how airborne the skater looks. It is built from two cues and normalised by box height h, so it works whether the camera is wide or zoomed in.</p>
+                    <p><strong>Clearance:</strong> the gap between the lowest ankle and the ice line. If the ankles are lost to motion blur, it falls back to the hips, assuming the feet sit 0.45h below them.</p>
+                    <div class="eq">c = (ŷ<sub>ice</sub> − y<sub>foot</sub>) / h</div>
+                    <p><strong>Hip velocity:</strong> upward motion adds to the signal, while fast downward motion is treated as a landing and scales the whole signal down.</p>
+                    <div class="eq">v = (y<sub>hip,t−1</sub> − y<sub>hip,t</sub>) / h</div>
+                    <div class="eq">s<sub>v</sub> = 0.3 · v &nbsp;if v &gt; 0,&nbsp;&nbsp; λ = max(0, 1 + 5v) &nbsp;if v ≤ 0</div>
+                    <div class="eq">s = 0 &nbsp;if c &lt; 0.02,&nbsp; otherwise &nbsp;s = (0.7 · c + s<sub>v</sub>) · λ,&nbsp;&nbsp; clipped to [0, 2]</div>
+                  </li>
+                  <li>
+                    <h4>Takeoff and landing</h4>
+                    <p>A single threshold flickers on and off when the signal is noisy. Instead the system uses hysteresis: a high threshold to start a jump and a lower one to keep it going.</p>
+                    <div class="eq">enter air when s ≥ 0.20,&nbsp;&nbsp; stay in air while s ≥ 0.12</div>
+                    <p>During fast rotation the pose model can drop out for a few frames, so gaps of up to 3 frames are bridged. A jump only counts if it lasts between 5 and 30 frames, which filters out stumbles and tracking glitches.</p>
+                  </li>
+                  <li>
+                    <h4>Height from airtime</h4>
+                    <p>Once airborne, the skater is a projectile: the only vertical force is gravity. With takeoff and landing at the same height, the flight is symmetric, so the time to the peak is half the airtime T.</p>
+                    <div class="eq">h = ½ · g · (T / 2)² = g · T² / 8,&nbsp;&nbsp; T = N<sub>frames</sub> / fps</div>
+                    <p>This needs no camera calibration or pixel-to-metre conversion, only an accurate frame count. For example, 0.5 s of airtime gives 9.81 × 0.25 / 8 ≈ 0.31 m. Jumps under 0.20 m are discarded as noise.</p>
+                  </li>
+                </ol>
+              </details>
+            </div>
+          </article>
+
+          <!--
+            Copy this block for each project. Add class="card featured" for a full-width card.
+
+          <article class="card">
+            <div class="thumb"><img src="img/PROJECT.gif" alt=""></div>
+            <div>
+              <p class="kicker">Category · Category</p>
+              <h3>Project title</h3>
+              <p>One or two sentences on the problem, what you built and the result.</p>
+              <div class="tags"><span class="tag">Tag</span><span class="tag">Tag</span></div>
+              <div class="links"><a href="#">Code →</a><a href="#">Video →</a></div>
+            </div>
+          </article>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="wrap">
+        <h2>About</h2>
+        <p>
+          I completed an <strong>MSc in Robotics and Autonomous Systems</strong> at the University
+          of Sussex on the full-tuition John Kinghorn Scholarship, working on RGB-D mapping,
+          particle-filter localisation, model predictive control and computer vision.
+        </p>
+        <p>
+          I'm <strong>co-founder and Chief Innovation Officer of Selko Innovation Technologies</strong>,
+          building rehabilitation hardware and therapeutic games for stroke survivors. I lead
+          R&amp;D there, from clinical need to working prototype.
+        </p>
+        <p>
+          My engineering foundation is <strong>4+ years of production C++ and Python</strong> in VFX,
+          animation and games, currently leading pipeline engineering at Red Star 3D, on titles
+          including House of the Dragon, Love, Death + Robots and Destiny 2: The Final Shape.
+          That taught me to build systems that hold up under real pressure, for the people who
+          actually use them.
+        </p>
+        <p>
+          I'm now focused on <strong>R&amp;D and robotics engineering</strong> in perception, tracking,
+          3D capture and real-time systems, especially where robotics meets film, games or health.
+        </p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <h2>Experience &amp; education</h2>
+        <div class="timeline">
+          <div class="role">
+            <div class="when">MSc</div>
+            <div>
+              <h3>Robotics and Autonomous Systems</h3>
+              <div class="org">University of Sussex</div>
+              <p>Full-tuition John Kinghorn Scholarship. Dissertation: closed-loop sensor-fusion wearable.</p>
+            </div>
+          </div>
+          <div class="role">
+            <div class="when">Present</div>
+            <div>
+              <h3>Co-founder &amp; Chief Innovation Officer</h3>
+              <div class="org">Selko Innovation Technologies</div>
+              <p>Leading R&amp;D on rehabilitation hardware and therapeutic games for stroke survivors.</p>
+            </div>
+          </div>
+          <div class="role">
+            <div class="when">Present</div>
+            <div>
+              <h3>Lead Pipeline Engineer</h3>
+              <div class="org">Red Star 3D</div>
+              <p>Production C++ and Python systems for VFX, animation and games. 4+ years across studios; credits include House of the Dragon, Love, Death + Robots and Destiny 2: The Final Shape.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div>
+            <h3>Perception &amp; estimation</h3>
+            <div class="tags"><span class="tag">SLAM</span><span class="tag">RGB-D mapping</span><span class="tag">Particle filters</span><span class="tag">Computer vision</span><span class="tag">Sensor fusion</span></div>
+          </div>
+          <div>
+            <h3>Control &amp; systems</h3>
+            <div class="tags"><span class="tag">MPC</span><span class="tag">Closed-loop control</span><span class="tag">Multi-robot</span><span class="tag">Real-time systems</span></div>
+          </div>
+          <div>
+            <h3>Hardware</h3>
+            <div class="tags"><span class="tag">Embedded</span><span class="tag">ESP32</span><span class="tag">Wearables</span><span class="tag">Drones</span><span class="tag">3D printing</span></div>
+          </div>
+          <div>
+            <h3>Software &amp; 3D</h3>
+            <div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">Maya</span><span class="tag">Git</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p class="contact-note">Open to R&amp;D and robotics engineering roles in perception, tracking, 3D capture and real-time systems.</p>
+        <div class="contact-links">
+          <a class="btn primary" href="mailto:you@example.com">Email me</a>
+          <a class="btn" href="https://github.com/YOUR-USERNAME">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Elif · elifonline</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
