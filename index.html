@@ -146,6 +146,27 @@
     .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
     .contact-note { color: var(--muted); margin-bottom: 20px; max-width: 620px; }
 
+    /* credits */
+    .credits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+    .credit { display: block; color: var(--text); }
+    .credit:hover { text-decoration: none; }
+    .poster {
+      aspect-ratio: 2 / 3; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
+      background: linear-gradient(160deg, var(--accent-soft), var(--surface));
+      display: flex; align-items: flex-end; padding: 14px; position: relative;
+      font-weight: 700; font-size: 18px; line-height: 1.2; transition: border-color .15s, transform .15s;
+    }
+    .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* wide title logos sit centred on black instead of filling the tile */
+    .poster.logo { background: #000; }
+    .poster.logo img { object-fit: contain; padding: 18px; }
+    .poster.invert img { filter: invert(1); }
+    .credit:hover .poster { border-color: var(--accent); transform: translateY(-2px); }
+    .credit .meta { margin-top: 10px; font-weight: 600; font-size: 15px; }
+    .credit .role { font-size: 13px; color: var(--accent); margin-top: 2px; }
+    .credit .type { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+    .imdb-link { display: inline-block; margin-top: 28px; font-family: "JetBrains Mono", monospace; font-size: 14px; }
+
     footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
 
     @media (max-width: 640px) {
@@ -170,6 +191,7 @@
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#credits">Credits</a>
         <a class="keep" href="#contact">Contact</a>
       </div>
     </div>
@@ -360,6 +382,152 @@
           <a class="btn primary" href="mailto:elifsuulasogluu@gmail.com">Email me</a>
           <a class="btn" href="https://www.linkedin.com/in/elif-ulasoglu-a377b21b3/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
+      </div>
+    </section>
+
+    <section id="credits">
+      <div class="wrap">
+        <h2>Credits</h2>
+        <!--
+          To add a poster: save the image as img/credits/<name>.jpg and put
+          <img src="img/credits/<name>.jpg" alt=""> inside the .poster div (replacing the title text).
+          To add a credit: copy one <a class="credit"> block.
+        -->
+        <div class="credits-grid">
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/hunger.jpg" alt="The Hunger Games: Sunrise on the Reaping" loading="lazy"></div>
+            <div class="meta">The Hunger Games: Sunrise on the Reaping</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">Film · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/snw.png" alt="Star Trek: Strange New Worlds" loading="lazy"></div>
+            <div class="meta">Star Trek: Strange New Worlds</div>
+            <div class="role">Maya Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 3 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/hotd.png" alt="House of the Dragon" loading="lazy"></div>
+            <div class="meta">House of the Dragon</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 8 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/atla.png" alt="Avatar: The Last Airbender" loading="lazy"></div>
+            <div class="meta">Avatar: The Last Airbender</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 2 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/lestat.jpg" alt="The Vampire Lestat" loading="lazy"></div>
+            <div class="meta">The Vampire Lestat</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">TV mini series · 2 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo invert"><img src="img/credits/boys.png" alt="The Boys" loading="lazy"></div>
+            <div class="meta">The Boys</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 8 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/sfa.png" alt="Star Trek: Starfleet Academy" loading="lazy"></div>
+            <div class="meta">Star Trek: Starfleet Academy</div>
+            <div class="role">VFX Maya Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 2 episodes · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/greenland2.jpg" alt="Greenland 2: Migration" loading="lazy"></div>
+            <div class="meta">Greenland 2: Migration</div>
+            <div class="role">Pipeline TD</div>
+            <div class="type">Film · 2026</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/pickup.jpg" alt="The Pickup" loading="lazy"></div>
+            <div class="meta">The Pickup</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">Film · 2025</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/wakanda.jpg" alt="Eyes of Wakanda" loading="lazy"></div>
+            <div class="meta">Eyes of Wakanda</div>
+            <div class="role">Pipeline Technical Director · Axis</div>
+            <div class="type">TV mini series · 4 episodes · 2025</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/murderbot.png" alt="Murderbot" loading="lazy"></div>
+            <div class="meta">Murderbot</div>
+            <div class="role">Pipeline TD · Pixomondo</div>
+            <div class="type">TV series · 5 episodes · 2025</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/ldr.png" alt="Love, Death + Robots" loading="lazy"></div>
+            <div class="meta">Love, Death + Robots</div>
+            <div class="role">Pipeline TD · Axis Studios</div>
+            <div class="type">TV series · 1 episode · 2025</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/fdb.jpg" alt="Final Destination Bloodlines" loading="lazy"></div>
+            <div class="meta">Final Destination Bloodlines</div>
+            <div class="role">Maya Pipeline TD · Pixomondo</div>
+            <div class="type">Film · 2025</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/destiny.png" alt="Destiny 2: The Final Shape" loading="lazy"></div>
+            <div class="meta">Destiny 2: The Final Shape</div>
+            <div class="role">Pipeline Developer</div>
+            <div class="type">Video game · 2024</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/kfp4.jpg" alt="Kung Fu Panda 4" loading="lazy"></div>
+            <div class="meta">Kung Fu Panda 4</div>
+            <div class="role">Render TD</div>
+            <div class="type">Film · 2024</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/creator.jpg" alt="The Creator" loading="lazy"></div>
+            <div class="meta">The Creator</div>
+            <div class="role">VFX Render TD</div>
+            <div class="type">Film · 2023</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/sugar.jpg" alt="The Wonderful Story of Henry Sugar" loading="lazy"></div>
+            <div class="meta">The Wonderful Story of Henry Sugar</div>
+            <div class="role">Render TD</div>
+            <div class="type">Short · 2023</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/demeter.jpg" alt="The Last Voyage of the Demeter" loading="lazy"></div>
+            <div class="meta">The Last Voyage of the Demeter</div>
+            <div class="role">Render TD</div>
+            <div class="type">Film · 2023</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/asteroid.jpg" alt="Asteroid City" loading="lazy"></div>
+            <div class="meta">Asteroid City</div>
+            <div class="role">VFX Render TD</div>
+            <div class="type">Film · 2023</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster logo"><img src="img/credits/witcher.jpg" alt="The Witcher: Blood Origin" loading="lazy"></div>
+            <div class="meta">The Witcher: Blood Origin</div>
+            <div class="role">Render Wrangler</div>
+            <div class="type">TV mini series · 4 episodes · 2022</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/matilda.jpg" alt="Matilda the Musical" loading="lazy"></div>
+            <div class="meta">Matilda the Musical</div>
+            <div class="role">Render Wrangler</div>
+            <div class="type">Film · 2022</div>
+          </a>
+          <a class="credit" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">
+            <div class="poster"><img src="img/credits/womanking.jpg" alt="The Woman King" loading="lazy"></div>
+            <div class="meta">The Woman King</div>
+            <div class="role">Render Wrangler</div>
+            <div class="type">Film · 2022</div>
+          </a>
+        </div>
+        <a class="imdb-link" href="https://www.imdb.com/name/nm13823854/" target="_blank" rel="noopener">Full credits on IMDb →</a>
       </div>
     </section>
   </main>
